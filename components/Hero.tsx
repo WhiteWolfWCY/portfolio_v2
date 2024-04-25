@@ -4,9 +4,7 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -14,7 +12,6 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -28,14 +25,18 @@ import { useToast } from "./ui/use-toast";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
 
 const FormSchema = z.object({
   email: z
     .string()
-    .min(1, { message: "This field has to be filled." })
+    .min(6, { message: "You must provide your email." })
     .email("This is not a valid email."),
-  name: z.string().min(3),
-  number: z.string().min(5).max(12),
+  name: z.string().min(3, { message: "You must provide your name" }),
+  number: z
+    .string()
+    .min(5, { message: "Provide a valid number format" })
+    .max(12, { message: "Provide a valid number format" }),
   message: z.string().min(1),
 });
 
@@ -43,6 +44,16 @@ export default function Hero() {
   const { toast } = useToast();
 
   const [loading, setLoading] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [explosion, setExplosion] = useState(false);
+
+  const openDialog = () => {
+    setDialogOpen(true);
+  };
+
+  const closeDialog = () => {
+    setDialogOpen(false);
+  };
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -72,6 +83,9 @@ export default function Hero() {
         const response = await res.json();
         if (!response.error) {
           toast({ title: "Message succesfully sent!" });
+          closeDialog();
+          setExplosion(true);
+          setTimeout(() => setExplosion(false), 2000);
         } else {
           toast({ title: "Something went wrong" });
         }
@@ -86,7 +100,7 @@ export default function Hero() {
   return (
     <div className="min-h-[60hv] flex flex-col-reverse lg:flex-row gap-14 lg:gap-0 items-center justify-between">
       <div className="space-y-10 flex flex-col w-full">
-        <h1 className="text-4xl lg:text-6xl text-center justify-center lg:justify-normal lg:text-left font-bold flex">
+        <h1 className="text-4xl gap-4 lg:text-6xl text-center justify-center lg:justify-normal lg:text-left font-bold flex">
           Hello there
           <span className="animate-wave">👋</span>
         </h1>
@@ -109,90 +123,35 @@ export default function Hero() {
           </Button>
           <Dialog>
             <DialogTrigger asChild>
-              <Button className="rounded-full font-semibold hover:bg-foreground hover:-rotate-12 transform transition-all duration-400">
+              <Button
+                onClick={openDialog}
+                className="rounded-full font-semibold hover:bg-foreground hover:-rotate-12 transform transition-all duration-400"
+              >
                 Contact
               </Button>
             </DialogTrigger>
-            <DialogContent className="w-[90%] md:w-full rounded-lg">
-              <DialogHeader>
-                <DialogTitle className="mb-2">Leave me a message</DialogTitle>
-              </DialogHeader>
-              <Form {...form}>
-                <form
-                  onSubmit={form.handleSubmit(onSubmit)}
-                  className="space-y-4"
-                >
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem className="grid grid-cols-4 md:grid-cols-8 gap-x-4 items-center space-y-0">
-                        <FormLabel className="col-span-1">Email</FormLabel>
-                        <FormControl>
-                          <Input
-                            className="col-span-3 md:col-span-7"
-                            placeholder="pedroduarte@gmail.com"
-                            type="email"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="grid gap-4 col-span-1">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem className="grid grid-cols-4 items-center gap-x-4">
-                            <FormLabel className="col-span-1">Name</FormLabel>
-                            <FormControl>
-                              <Input
-                                className="col-span-3"
-                                placeholder="Pedro Duarte"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                    <div className="grid gap-4 col-span-1">
-                      <FormField
-                        control={form.control}
-                        name="number"
-                        render={({ field }) => (
-                          <FormItem className="grid grid-cols-4 items-center gap-x-4">
-                            <FormLabel className="col-span-1">Number</FormLabel>
-                            <FormControl>
-                              <Input
-                                className="col-span-3"
-                                placeholder="555666777"
-                                type="tel"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                  </div>
-                  <div className="grid col-span-1 gap-4">
+            {explosion && <Fireworks autorun={{ speed: 2 }}  />}
+            {dialogOpen && (
+              <DialogContent className="w-[90%] md:w-full rounded-lg">
+                <DialogHeader>
+                  <DialogTitle className="mb-2">Leave me a message</DialogTitle>
+                </DialogHeader>
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-4"
+                  >
                     <FormField
                       control={form.control}
-                      name="message"
+                      name="email"
                       render={({ field }) => (
-                        <FormItem className="grid grid-cols-8 gap-4 items-center space-y-0">
-                          <FormLabel className="col-span-1">Message</FormLabel>
+                        <FormItem className="items-center gap-4">
+                          <FormLabel className="">Email</FormLabel>
                           <FormControl>
-                            <Textarea
-                              required
-                              placeholder="Let's connect"
-                              className="col-span-6 col-start-3 md:col-span-7"
+                            <Input
+                              className=""
+                              placeholder="pedroduarte@gmail.com"
+                              type="email"
                               {...field}
                             />
                           </FormControl>
@@ -200,11 +159,68 @@ export default function Hero() {
                         </FormItem>
                       )}
                     />
-                  </div>
-                  <DialogClose asChild>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="col-span-1">
+                        <FormField
+                          control={form.control}
+                          name="name"
+                          render={({ field }) => (
+                            <FormItem className="items-center">
+                              <FormLabel className="">Name</FormLabel>
+                              <FormControl>
+                                <Input
+                                  className=""
+                                  placeholder="Pedro Duarte"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                      <div className="col-span-1">
+                        <FormField
+                          control={form.control}
+                          name="number"
+                          render={({ field }) => (
+                            <FormItem className="items-center">
+                              <FormLabel className="">Number</FormLabel>
+                              <FormControl>
+                                <Input
+                                  className=""
+                                  placeholder="555666777"
+                                  type="tel"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                    </div>
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem className="gap-4 items-center">
+                          <FormLabel className="">Message</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              required
+                              placeholder="Let's connect"
+                              className=""
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
                     <Button
                       type="submit"
-                      className="text-foreground rounded-full w-full"
+                      className="text-foreground rounded-full w-full mt-24"
                       disabled={loading}
                     >
                       Send
@@ -212,10 +228,10 @@ export default function Hero() {
                         <div className="text-center ml-5 w-6 h-6 border-t-2 border-foreground border-solid rounded-full animate-spin"></div>
                       )}
                     </Button>
-                  </DialogClose>
-                </form>
-              </Form>
-            </DialogContent>
+                  </form>
+                </Form>
+              </DialogContent>
+            )}
           </Dialog>
         </div>
       </div>

@@ -12,8 +12,8 @@ export async function POST(request: NextRequest) {
 
       auth: {
         user: "mateuszmartyna44@gmail.com",
-        pass: "",
-        //pass: process.env.MAILER_PASSWORD,
+        //pass: "",
+        pass: process.env.MAILER_PASSWORD,
       },
     });
     const info = await transporter.sendMail({
