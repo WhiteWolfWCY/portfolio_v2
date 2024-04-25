@@ -4,21 +4,30 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Label } from "./ui/label";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import TypeWriter from "./type-writer";
 import { useState } from "react";
 import { useToast } from "./ui/use-toast";
 import { z } from "zod";
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const FormSchema = z.object({
   email: z
@@ -26,8 +35,8 @@ const FormSchema = z.object({
     .min(1, { message: "This field has to be filled." })
     .email("This is not a valid email."),
   name: z.string().min(3),
-  number: z.string(),
-  message: z.string(),
+  number: z.string().min(5).max(12),
+  message: z.string().min(1),
 });
 
 export default function Hero() {
@@ -41,16 +50,45 @@ export default function Hero() {
       email: "",
       name: "",
       number: "",
-      message: ""
+      message: "",
     },
-  })
+  });
+
+  function onSubmit(values: z.infer<typeof FormSchema>) {
+    setLoading(true);
+    let data = {
+      ...values,
+    };
+    fetch("/API/contact", {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then(async (res) => {
+        setLoading(false);
+        const response = await res.json();
+        if (!response.error) {
+          toast({ title: "Message succesfully sent!" });
+        } else {
+          toast({ title: "Something went wrong" });
+        }
+      })
+      .catch((e) => {
+        setLoading(false);
+        toast({ title: "Something went wrong" });
+      });
+    console.log(values);
+  }
 
   return (
     <div className="min-h-[60hv] flex flex-col-reverse lg:flex-row gap-14 lg:gap-0 items-center justify-between">
       <div className="space-y-10 flex flex-col w-full">
         <h1 className="text-4xl lg:text-6xl text-center justify-center lg:justify-normal lg:text-left font-bold flex">
           Hello there
-          <span className="animate-wave hidden lg:block">👋</span>
+          <span className="animate-wave">👋</span>
         </h1>
         <h1 className="text-4xl lg:text-6xl text-center justify-center lg:justify-normal lg:text-left font-bold flex">
           <TypeWriter />
@@ -79,76 +117,104 @@ export default function Hero() {
               <DialogHeader>
                 <DialogTitle className="mb-2">Leave me a message</DialogTitle>
               </DialogHeader>
-              <form className="space-y-4">
-                <div className="grid col-span-1 gap-4">
-                  <div className="grid grid-cols-8 items-center">
-                    <Label htmlFor="name" className="col-span-1">
-                      Email
-                    </Label>
-                    <Input
-                      id="email"
-                      placeholder="pedroduarte@gmail.com"
-                      type="email"
-                      className="col-span-6 col-start-3 md:col-span-7"
-                    />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="grid gap-4 col-span-1">
-                    <div className="grid grid-cols-4 items-center gap-4">
-                      <Label htmlFor="name" className="">
-                        Name
-                      </Label>
-                      <Input
-                        id="name"
-                        type="text"
-                        required
-                        placeholder="Pedro Duarte"
-                        className="col-span-3"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid gap-4 col-span-1">
-                    <div className="grid grid-cols-4 items-center gap-4">
-                      <Label htmlFor="name" className="">
-                        Number
-                      </Label>
-                      <Input
-                        id="number"
-                        type="tel"
-                        placeholder="555666777"
-                        required
-                        className="col-span-3"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="grid col-span-1 gap-4">
-                  <div className="grid grid-cols-8 gap-4 items-center">
-                    <Label htmlFor="name" className="col-span-1 text-right">
-                      Message
-                    </Label>
-                    <Textarea
-                      required
-                      placeholder="Let's connect"
-                      className="col-span-6 col-start-3 md:col-span-7"
-                    />
-                  </div>
-                </div>
-              </form>
-
-              <DialogFooter className="">
-                <Button
-                  type="submit"
-                  className="text-foreground rounded-full w-full"
-                  disabled={loading}
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-4"
                 >
-                  Send
-                  {loading && (
-                    <div className="mb-3 text-center ml-5 w-6 h-6 border-t-2 border-primary border-solid rounded-full animate-spin"></div>
-                  )}
-                </Button>
-              </DialogFooter>
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem className="grid grid-cols-4 md:grid-cols-8 gap-x-4 items-center space-y-0">
+                        <FormLabel className="col-span-1">Email</FormLabel>
+                        <FormControl>
+                          <Input
+                            className="col-span-3 md:col-span-7"
+                            placeholder="pedroduarte@gmail.com"
+                            type="email"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid gap-4 col-span-1">
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem className="grid grid-cols-4 items-center gap-x-4">
+                            <FormLabel className="col-span-1">Name</FormLabel>
+                            <FormControl>
+                              <Input
+                                className="col-span-3"
+                                placeholder="Pedro Duarte"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <div className="grid gap-4 col-span-1">
+                      <FormField
+                        control={form.control}
+                        name="number"
+                        render={({ field }) => (
+                          <FormItem className="grid grid-cols-4 items-center gap-x-4">
+                            <FormLabel className="col-span-1">Number</FormLabel>
+                            <FormControl>
+                              <Input
+                                className="col-span-3"
+                                placeholder="555666777"
+                                type="tel"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  </div>
+                  <div className="grid col-span-1 gap-4">
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem className="grid grid-cols-8 gap-4 items-center space-y-0">
+                          <FormLabel className="col-span-1">Message</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              required
+                              placeholder="Let's connect"
+                              className="col-span-6 col-start-3 md:col-span-7"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <DialogClose asChild>
+                    <Button
+                      type="submit"
+                      className="text-foreground rounded-full w-full"
+                      disabled={loading}
+                    >
+                      Send
+                      {loading && (
+                        <div className="text-center ml-5 w-6 h-6 border-t-2 border-foreground border-solid rounded-full animate-spin"></div>
+                      )}
+                    </Button>
+                  </DialogClose>
+                </form>
+              </Form>
             </DialogContent>
           </Dialog>
         </div>

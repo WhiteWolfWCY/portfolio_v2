@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  require("dotenv").config;
+  //require("dotenv").config;
   const data = await request.json();
   let nodemailer = require("nodemailer");
   try {
@@ -12,7 +12,8 @@ export async function POST(request: NextRequest) {
 
       auth: {
         user: "mateuszmartyna44@gmail.com",
-        pass: process.env.MAILER_PASSWORD,
+        pass: "",
+        //pass: process.env.MAILER_PASSWORD,
       },
     });
     const info = await transporter.sendMail({
@@ -70,8 +71,7 @@ export async function POST(request: NextRequest) {
                         <ul>
                             <li><strong>Name:</strong> ${data.name}</li>
                             <li><strong>Email:</strong> ${data.email}</li>
-                            <li><strong>Phone:</strong> ${data.phoneNumber}</li>
-                            <li><strong>Subject:</strong> ${data.subject}</li>
+                            <li><strong>Phone:</strong> ${data.number}</li>
                             <li><strong>Message:</strong><br>${data.message}</li>
                         </ul>
                     </div>
