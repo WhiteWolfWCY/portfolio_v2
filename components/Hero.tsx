@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "./ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import TypeWriter from "./type-writer";
+import TypeWriter from "@/components/ui/type-writer";
 import { useState } from "react";
 import { useToast } from "./ui/use-toast";
 import { z } from "zod";
@@ -39,6 +39,8 @@ const FormSchema = z.object({
     .max(12, { message: "Provide a valid number format" }),
   message: z.string().min(1),
 });
+
+const strings = ["I'm Mateusz", "Nice to meet you!", "Have a good day!"];
 
 export default function Hero() {
   const { toast } = useToast();
@@ -105,7 +107,7 @@ export default function Hero() {
           <span className="animate-wave">👋</span>
         </h1>
         <h1 className="text-4xl lg:text-6xl text-center justify-center lg:justify-normal lg:text-left font-bold flex">
-          <TypeWriter />
+          <TypeWriter strings={strings} />
         </h1>
 
         <p>
@@ -220,7 +222,7 @@ export default function Hero() {
                     />
                     <Button
                       type="submit"
-                      className="text-foreground rounded-full w-full mt-24"
+                      className="text-foreground rounded-full font-semibold w-full mt-24"
                       disabled={loading}
                     >
                       Send
