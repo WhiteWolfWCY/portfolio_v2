@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import { FaGithub , FaLinkedinIn  , FaSquareXTwitter } from "react-icons/fa6";
+import { FaDiscord, FaGithub , FaLinkedinIn } from "react-icons/fa6";
 import { Switch } from "@/components/ui/switch"
 import { Moon } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -33,19 +33,19 @@ export default function Navbar(){
 
     const socials = [
         {
-            link: "",
+            link: "https://www.linkedin.com/in/mateuszmartyna",
             label: "LinkedIn",
             icon: FaLinkedinIn
         },
         {
-            link: "",
+            link: "https://github.com/WhiteWolfWCY",
             label: "Github",
             icon: FaGithub
         },
         {
             link: "",
-            label: "X",
-            icon: FaSquareXTwitter
+            label: "Discord",
+            icon: FaDiscord
         },
     ]
 

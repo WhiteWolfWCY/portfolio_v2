@@ -12,10 +12,9 @@ import {
   SiTailwindcss,
   SiExpress,
   SiMongodb,
-  SiPostgresql,
+  SiOpenai,
   SiPrisma,
   SiClerk,
-  SiTrpc,
 } from "react-icons/si";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -46,11 +45,38 @@ export default function () {
         SiTailwindcss,
         SiExpress,
         SiMongodb,
+        FaStripeS,
       ],
       link: "https://wolfgeekmarkt-production.up.railway.app",
       cover: "/wolfgeekmarkt.jpeg",
       background: "bg-indigo-500",
     },
+    {
+        title: "Virtuo",
+        tech: [
+          TbBrandNextjs,
+          TbBrandTypescript,
+          SiTailwindcss,
+          SiPrisma,
+          SiMongodb,
+          SiOpenai,
+          FaStripeS,
+        ],
+        link: "https://virtuoo-production.up.railway.app",
+        cover: "/virtuo.jpeg",
+        background: "bg-indigo-500",
+      },
+      {
+        title: "Github Users Explorer",
+        tech: [
+          FaReact,
+          FaNodeJs,
+          FaGithub,
+        ],
+        link: "https://react-github-users-explorer.netlify.app",
+        cover: "/ghusers.jpeg",
+        background: "bg-indigo-500",
+      },
   ];
 
   return (
