@@ -110,7 +110,7 @@ export default function Skills() {
           />
         </div>
         <div className="flex flex-col gap-8">
-          <div className="flex flex-row text-4xl lg:text-6xl gap-2 justify-center col-span-1">
+          <div className="flex flex-row text-4xl lg:text-6xl justify-center col-span-1">
             <TypeWriter strings={strings} />
           </div>
           <p className="my-auto">

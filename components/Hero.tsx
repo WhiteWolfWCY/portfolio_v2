@@ -242,7 +242,7 @@ export default function Hero() {
         src="/avatar.png"
         width="500"
         height="600"
-        className="sm:h-80 sm:w-80 lg:h-[500px] lg:w-[500px] hover:animate-wave"
+        className="sm:h-80 sm:w-80 lg:h-[500px] lg:w-[500px]"
       />
     </div>
   );
