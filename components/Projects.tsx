@@ -45,13 +45,12 @@ export default function () {
         TbBrandTypescript,
         SiTailwindcss,
         SiExpress,
-        SiMongodb
+        SiMongodb,
       ],
       link: "https://wolfgeekmarkt-production.up.railway.app",
       cover: "/wolfgeekmarkt.jpeg",
       background: "bg-indigo-500",
     },
-    
   ];
 
   return (
@@ -60,17 +59,22 @@ export default function () {
         <TypeWriter strings={strings} />
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 pt-20 gap-8">
-      {projects.map((project, index) => (
+        {projects.map((project, index) => (
           <Link key={index} href={project.link} className="col-span-1">
             <div className="p-5 rounded-md">
-                <DirectionAwareHover
+              <DirectionAwareHover
                 imageUrl={project.cover}
                 className="w-full space-y-5 cursor-pointer"
-                >
-                    <h1>
-                        {project.title}
-                    </h1>
-                </DirectionAwareHover>
+              >
+                <div className="space-y-5">
+                  <h1 className="text-2xl font-bold">{project.title}</h1>
+                  <div className="flex items-center gap-5">
+                    {project.tech.map((Icon, index) => (
+                      <Icon className="w-8 h-8" key={index} />
+                    ))}
+                  </div>
+                </div>
+              </DirectionAwareHover>
             </div>
           </Link>
         ))}
