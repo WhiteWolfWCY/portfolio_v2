@@ -43,7 +43,7 @@ export default function Navbar(){
             icon: FaGithub
         },
         {
-            link: "",
+            link: "https://discord.com/users/whitewolf_ww",
             label: "Discord",
             icon: FaDiscord
         },
