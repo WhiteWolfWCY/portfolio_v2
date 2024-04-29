@@ -116,7 +116,7 @@ export default function Hero() {
         </Reveal>
 
         <Reveal delay={0.8} y={50}>
-          <p>
+          <p className="text-center">
             I&apos;m a passionate software developer from Poland. I mostly focus
             on building fullstack web applications using various modern
             technologies. I do my best to pay attention to every small detail so
