@@ -2,34 +2,23 @@
 
 import Link from "next/link";
 import { FaDiscord, FaGithub , FaLinkedinIn } from "react-icons/fa6";
-import { Switch } from "@/components/ui/switch"
+import { Switch } from "@/components/ui/switch";
 import { Moon } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 
-
-export default function Navbar(){
-    const mounted = useRef(false);
+export default function Navbar() {
+    const { theme, setTheme } = useTheme();
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
-        mounted.current = true;
-
-        return () => {
-            mounted.current = false;
-        };
-    }, []);
-
-    const {theme, setTheme} = useTheme();
+        setIsDarkMode(theme === "dark");
+    }, [theme]);
 
     const handleOnSwitch = () => {
-        if(theme === "light"){
-            setTheme("dark")
-            return
-        }else{
-            setTheme("light")
-            return
-        }
-    }
+        setIsDarkMode(!isDarkMode);
+        setTheme(isDarkMode ? "light" : "dark");
+    };
 
     const socials = [
         {
@@ -42,25 +31,26 @@ export default function Navbar(){
             label: "Github",
             icon: FaGithub
         }
-    ]
+    ];
 
     return (
         <nav className="py-10">
             <div className="flex flex-row justify-between items-center">
-                    <h1 className="text-2xl font-bold underline underline-offset-8 decoration-primary -rotate-2">WhiteWolf 🐺</h1>
-                    <div className="flex flex-row gap-2 lg:gap-5 items-center">
-                        <div className="flex gap-1 lg:gap-2 items-center justify-center mr-0 lg:mr-5">
-                            <Switch className="duration-500" checked={theme === "dark"} onCheckedChange={handleOnSwitch} />
-                            <Moon />
-                        </div>
-                            
+                <h1 className="text-xl md:text-2xl font-bold underline underline-offset-8 decoration-primary -rotate-2">WhiteWolf 🐺</h1>
+                <div className="flex flex-row gap-5 items-center">
+                    <div className="flex gap-1 items-center justify-center mr-0 lg:mr-5">
+                        <Switch className="duration-500" checked={isDarkMode} onCheckedChange={handleOnSwitch} />
+                        <Moon />
+                    </div>
+                    <div className="flex flex-row gap-2">
                         {socials.map((social) => (
                             <Link href={social.link} key={social.label} >
                                 <social.icon className="h-5 w-5 hover:text-muted-foreground hover:scale-125 transition-all transform duration-150" />
                             </Link>
                         ))}
                     </div>
+                </div>
             </div>
         </nav>
-    )
+    );
 }

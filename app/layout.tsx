@@ -24,7 +24,8 @@ export default function RootLayout({
       <body className={barlow.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="system"
+          enableSystem
           disableTransitionOnChange
         >
           {children}
