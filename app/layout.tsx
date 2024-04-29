@@ -5,14 +5,11 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { constructMetadata } from "@/lib/utils";
 
 const barlow = Barlow({ weight: "500", subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "WhiteWolf - Portfolio",
-  description:
-    "This is my personal portfolio website. In fact, the second version of it. I hope you enjoy it :)",
-};
+export const metadata = constructMetadata()
 
 export default function RootLayout({
   children,
