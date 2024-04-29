@@ -107,6 +107,7 @@ export default function Skills() {
         margin: "-400px",
         once: true
       }}
+      transition={{ delay: 0.3 }}
       className="mt-32"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -129,7 +130,7 @@ export default function Skills() {
           <p className="my-auto">
             I consider myself a very flexible person and I always try to choose
             technologies that would be ideal for obtaining a desired result. Due
-            to this fact, during my yet short carrer, I've grasped various
+            to this fact, during my yet short carrer, I&apos;ve grasped various
             programming languages. Beacause of that, learning a new technology
             will never be a problem for me.
           </p>

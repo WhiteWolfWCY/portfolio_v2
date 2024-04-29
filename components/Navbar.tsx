@@ -41,12 +41,7 @@ export default function Navbar(){
             link: "https://github.com/WhiteWolfWCY",
             label: "Github",
             icon: FaGithub
-        },
-        {
-            link: "https://discord.com/users/whitewolf_ww",
-            label: "Discord",
-            icon: FaDiscord
-        },
+        }
     ]
 
     return (

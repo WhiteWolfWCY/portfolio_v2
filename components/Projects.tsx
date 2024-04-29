@@ -23,7 +23,7 @@ import { motion } from "framer-motion";
 
 const strings = ["Projects", "My work", "Take a look!"];
 
-export default function () {
+export default function Projects() {
   const projects = [
     {
       title: "ByteBin",
@@ -88,6 +88,7 @@ export default function () {
         margin: "-400px",
         once: true,
       }}
+      transition={{ delay: 0.3 }}
       className="mt-32 flex flex-col items-center justify-center"
     >
       <h1 className="text-4xl lg:text-6xl text-center justify-center lg:justify-normal font-bold flex">

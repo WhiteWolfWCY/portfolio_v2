@@ -4,31 +4,30 @@ import Navbar from "@/components/Navbar";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import { FloatingNav } from "@/components/ui/floating-navbar";
-import { Pickaxe } from "lucide-react";
-import { SiAboutdotme, SiSkillshare } from "react-icons/si";
+import { Code, PersonStanding, Pickaxe } from "lucide-react";
 
 const navItems = [
   {
     name: "About me",
     link: "/#me",
-    icon: <SiAboutdotme className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    icon: <PersonStanding className="h-6 w-6 text-neutral-500 dark:text-white" />,
   },
   {
     name: "Skills",
     link: "/#skills",
-    icon: <SiSkillshare className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    icon: <Code className="h-6 w-6 text-neutral-500 dark:text-white" />,
   },
   {
     name: "Projects",
     link: "/#projects",
-    icon: <Pickaxe className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    icon: <Pickaxe className="h-6 w-6 text-neutral-500 dark:text-white" />,
   },
 ];
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <div className="max-w-7xl mx-auto px-5 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-5 overflow-hidden space-y-20">
         <Navbar />
         <div className="relative  w-full">
           <FloatingNav navItems={navItems} />
