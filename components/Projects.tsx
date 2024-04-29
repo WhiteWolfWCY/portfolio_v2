@@ -19,6 +19,7 @@ import {
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { DirectionAwareHover } from "./ui/direction-aware-hover";
+import { motion } from "framer-motion";
 
 const strings = ["Projects", "My work", "Take a look!"];
 
@@ -52,35 +53,43 @@ export default function () {
       background: "bg-indigo-500",
     },
     {
-        title: "Virtuo",
-        tech: [
-          TbBrandNextjs,
-          TbBrandTypescript,
-          SiTailwindcss,
-          SiPrisma,
-          SiMongodb,
-          SiOpenai,
-          FaStripeS,
-        ],
-        link: "https://virtuoo-production.up.railway.app",
-        cover: "/virtuo.jpeg",
-        background: "bg-indigo-500",
-      },
-      {
-        title: "Github Users Explorer",
-        tech: [
-          FaReact,
-          FaNodeJs,
-          FaGithub,
-        ],
-        link: "https://react-github-users-explorer.netlify.app",
-        cover: "/ghusers.jpeg",
-        background: "bg-indigo-500",
-      },
+      title: "Virtuo",
+      tech: [
+        TbBrandNextjs,
+        TbBrandTypescript,
+        SiTailwindcss,
+        SiPrisma,
+        SiMongodb,
+        SiOpenai,
+        FaStripeS,
+      ],
+      link: "https://virtuoo-production.up.railway.app",
+      cover: "/virtuo.jpeg",
+      background: "bg-indigo-500",
+    },
+    {
+      title: "Github Users Explorer",
+      tech: [FaReact, FaNodeJs, FaGithub],
+      link: "https://react-github-users-explorer.netlify.app",
+      cover: "/ghusers.jpeg",
+      background: "bg-indigo-500",
+    },
   ];
 
   return (
-    <div className="mt-32 flex flex-col items-center justify-center">
+    <motion.div
+      initial={{
+        opacity: 0,
+      }}
+      whileInView={{
+        opacity: 1,
+      }}
+      viewport={{
+        margin: "-400px",
+        once: true,
+      }}
+      className="mt-32 flex flex-col items-center justify-center"
+    >
       <h1 className="text-4xl lg:text-6xl text-center justify-center lg:justify-normal font-bold flex">
         <TypeWriter strings={strings} />
       </h1>
@@ -105,6 +114,6 @@ export default function () {
           </Link>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

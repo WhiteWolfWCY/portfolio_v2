@@ -21,6 +21,7 @@ import {
 import { RiJavascriptLine } from "react-icons/ri";
 import { InfiniteMovingCards } from "./ui/infinite-moving-cards";
 import TypeWriter from "./ui/type-writer";
+import { motion } from "framer-motion";
 
 const skillsRight = [
   {
@@ -95,7 +96,19 @@ const strings = ["Skills", "Stack", "Technologies"];
 
 export default function Skills() {
   return (
-    <div className="mt-32">
+    <motion.div
+      initial={{
+        opacity: 0,
+      }}
+      whileInView={{
+        opacity: 1,
+      }}
+      viewport={{
+        margin: "-400px",
+        once: true
+      }}
+      className="mt-32"
+    >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         <div className="col-span-1 pt-0 lg:pt-20 order-last lg:order-first">
           <InfiniteMovingCards
@@ -122,6 +135,6 @@ export default function Skills() {
           </p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
