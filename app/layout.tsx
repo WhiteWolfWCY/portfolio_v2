@@ -3,6 +3,7 @@ import { Barlow } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
+import { Analytics } from '@vercel/analytics/react';
 
 const barlow = Barlow({ weight: "500", subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Analytics />
           <Toaster />
         </ThemeProvider>
       </body>
