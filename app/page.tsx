@@ -27,20 +27,22 @@ const navItems = [
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <div className="max-w-7xl mx-auto px-5 overflow-hidden space-y-20">
+      <div className="max-w-7xl mx-auto px-5 overflow-hidden">
         <Navbar />
         <div className="relative  w-full">
           <FloatingNav navItems={navItems} />
         </div>
-          <div id="me">
-            <Hero />
-          </div>
-          <div id="skills">
-            <Skills />
-          </div>
-          <div id="projects">
-            <Projects />
-          </div>
+        <div className="space-y-20">
+            <div id="me">
+              <Hero />
+            </div>
+            <div id="skills">
+              <Skills />
+            </div>
+            <div id="projects">
+              <Projects />
+            </div>
+        </div>
       </div>
       <div className="max-w-7xl mx-auto">
         <Footer />
