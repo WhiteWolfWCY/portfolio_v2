@@ -4,7 +4,6 @@ import Navbar from "@/components/Navbar";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import { FloatingNav } from "@/components/ui/floating-navbar";
-import { Reveal } from "@/components/ui/reveal";
 import { Pickaxe } from "lucide-react";
 import { SiAboutdotme, SiSkillshare } from "react-icons/si";
 
@@ -34,21 +33,15 @@ export default function Home() {
         <div className="relative  w-full">
           <FloatingNav navItems={navItems} />
         </div>
-        <Reveal>
           <div id="me">
             <Hero />
           </div>
-        </Reveal>
-        <Reveal>
           <div id="skills">
             <Skills />
           </div>
-        </Reveal>
-        <Reveal>  
           <div id="projects">
             <Projects />
           </div>
-        </Reveal>
       </div>
       <div className="max-w-7xl mx-auto">
         <Footer />

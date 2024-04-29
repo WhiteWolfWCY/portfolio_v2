@@ -26,6 +26,7 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Fireworks from "react-canvas-confetti/dist/presets/fireworks";
+import { Reveal } from "./ui/reveal";
 
 const FormSchema = z.object({
   email: z
@@ -101,38 +102,48 @@ export default function Hero() {
 
   return (
     <div className="min-h-[60hv] flex flex-col-reverse lg:flex-row gap-14 lg:gap-0 items-center justify-between">
-      <div className="space-y-10 flex flex-col w-full">
-        <h1 className="text-4xl gap-4 lg:text-6xl text-center justify-center lg:justify-normal lg:text-left font-bold flex">
-          Hello there
-          <span className="animate-wave">👋</span>
-        </h1>
-        <h1 className="text-4xl lg:text-6xl text-center justify-center lg:justify-normal lg:text-left font-bold flex">
-          <TypeWriter strings={strings} />
-        </h1>
+      <div className="space-y-10 flex flex-col w-full justify-center items-center">
+        <Reveal delay={0.2} x={-50}>
+          <h1 className="text-4xl gap-4 lg:text-6xl text-center justify-center lg:justify-normal lg:text-left font-bold flex">
+            Hello there
+            <span className="animate-wave">👋</span>
+          </h1>
+        </Reveal>
+        <Reveal delay={0.5} x={-50}>
+          <h1 className="text-4xl lg:text-6xl text-center justify-center lg:justify-normal lg:text-left font-bold flex">
+            <TypeWriter strings={strings} />
+          </h1>
+        </Reveal>
 
-        <p>
-          I&apos;m a passionate software developer from Poland. I mostly focus
-          on building fullstack web applications using various modern
-          technologies. I do my best to pay attention to every small detail so
-          that my products are complementary and meet all the expectations.
-        </p>
+        <Reveal delay={0.8} y={50}>
+          <p>
+            I&apos;m a passionate software developer from Poland. I mostly focus
+            on building fullstack web applications using various modern
+            technologies. I do my best to pay attention to every small detail so
+            that my products are complementary and meet all the expectations.
+          </p>
+        </Reveal>
 
         <div className="flex mx-auto gap-10 items-center">
-          <Button className="rounded-full font-semibold hover:bg-foreground hover:-rotate-12 transform transition-all duration-400">
-            <a href="MateuszMartyna.pdf" download="MateuszMartyna.pdf">
-              Resume
-            </a>
-          </Button>
+          <Reveal delay={0.8} y={50}>
+            <Button className="rounded-full font-semibold hover:bg-foreground hover:-rotate-12 transform transition-all duration-400">
+              <a href="MateuszMartyna.pdf" download="MateuszMartyna.pdf">
+                Resume
+              </a>
+            </Button>
+          </Reveal>
           <Dialog>
-            <DialogTrigger asChild>
-              <Button
-                onClick={openDialog}
-                className="rounded-full font-semibold hover:bg-foreground hover:-rotate-12 transform transition-all duration-400"
-              >
-                Contact
-              </Button>
-            </DialogTrigger>
-            {explosion && <Fireworks autorun={{ speed: 2 }}  />}
+            <Reveal delay={0.8} y={50}>
+              <DialogTrigger asChild>
+                <Button
+                  onClick={openDialog}
+                  className="rounded-full font-semibold hover:bg-foreground hover:-rotate-12 transform transition-all duration-400"
+                >
+                  Contact
+                </Button>
+              </DialogTrigger>
+            </Reveal>
+            {explosion && <Fireworks autorun={{ speed: 2 }} />}
             {dialogOpen && (
               <DialogContent className="w-[90%] md:w-full rounded-lg">
                 <DialogHeader>
