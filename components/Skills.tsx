@@ -104,7 +104,7 @@ export default function Skills() {
         opacity: 1,
       }}
       viewport={{
-        margin: "-400px",
+        margin: "-200px",
         once: true
       }}
       transition={{ delay: 0.3 }}

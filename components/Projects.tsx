@@ -85,7 +85,7 @@ export default function Projects() {
         opacity: 1,
       }}
       viewport={{
-        margin: "-400px",
+        margin: "-200px",
         once: true,
       }}
       transition={{ delay: 0.3 }}
