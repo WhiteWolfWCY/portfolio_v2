@@ -34,13 +34,13 @@ export default function Home() {
           <FloatingNav navItems={navItems} />
         </div>
         <div className="space-y-20">
-            <div id="me">
+            <div id="me" className="lg:scroll-mt-44">
               <Hero />
             </div>
-            <div id="skills">
+            <div id="skills" className="scroll-mt-28 lg:scroll-mt-96">
               <Skills />
             </div>
-            <div id="projects">
+            <div id="projects" className="scroll-mt-20 lg:scroll-mt-20">
               <Projects />
             </div>
         </div>
