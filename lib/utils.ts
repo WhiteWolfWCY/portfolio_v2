@@ -9,7 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 export function constructMetadata({
   title = "WhiteWolf - Portfolio",
   description = "This is my personal portfolio website. In fact, the second version of it. I hope you enjoy it :)",
-  image = "/logo.jpg",
+  image = "/avatar.jpg",
   icons = "/favicon.ico",
   noIndex = false,
 }: {
