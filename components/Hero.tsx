@@ -258,7 +258,7 @@ export default function Hero() {
           src="/avatar.png"
           width="500"
           height="600"
-          className="sm:h-80 sm:w-80 lg:h-[500px] lg:w-[500px]"
+          className="h-80 w-80 md:h-96 md:w-96 lg:h-[500px] lg:w-[500px]"
         />
       </div>
       <Stats />
