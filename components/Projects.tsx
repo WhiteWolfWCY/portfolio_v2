@@ -23,58 +23,62 @@ import { motion } from "framer-motion";
 
 const strings = ["Projects", "My work", "Take a look!"];
 
+
+export const PROJECTS = [
+  {
+    title: "ByteBin",
+    tech: [
+      TbBrandNextjs,
+      TbBrandTypescript,
+      SiTailwindcss,
+      SiClerk,
+      FaNodeJs,
+    ],
+    link: "https://byte-bin-eight.vercel.app",
+    cover: "/bytebin.jpeg",
+    background: "bg-blue-500",
+  },
+  {
+    title: "WolfGeekmarkt",
+    tech: [
+      TbBrandNextjs,
+      TbBrandTypescript,
+      SiTailwindcss,
+      SiExpress,
+      SiMongodb,
+      FaStripeS,
+    ],
+    link: "https://wolfgeekmarkt-production.up.railway.app",
+    cover: "/wolfgeekmarkt.jpeg",
+    background: "bg-indigo-500",
+  },
+  {
+    title: "Virtuo",
+    tech: [
+      TbBrandNextjs,
+      TbBrandTypescript,
+      SiTailwindcss,
+      SiPrisma,
+      SiMongodb,
+      SiOpenai,
+      FaStripeS,
+    ],
+    link: "https://virtuoo-production.up.railway.app",
+    cover: "/virtuo.jpeg",
+    background: "bg-indigo-500",
+  },
+  {
+    title: "Github Users Explorer",
+    tech: [FaReact, FaNodeJs, FaGithub],
+    link: "https://react-github-users-explorer.netlify.app",
+    cover: "/ghusers.jpeg",
+    background: "bg-indigo-500",
+  },
+
+];
 export default function Projects() {
-  const projects = [
-    {
-      title: "ByteBin",
-      tech: [
-        TbBrandNextjs,
-        TbBrandTypescript,
-        SiTailwindcss,
-        SiClerk,
-        FaNodeJs,
-      ],
-      link: "https://byte-bin-eight.vercel.app",
-      cover: "/bytebin.jpeg",
-      background: "bg-blue-500",
-    },
-    {
-      title: "WolfGeekmarkt",
-      tech: [
-        TbBrandNextjs,
-        TbBrandTypescript,
-        SiTailwindcss,
-        SiExpress,
-        SiMongodb,
-        FaStripeS,
-      ],
-      link: "https://wolfgeekmarkt-production.up.railway.app",
-      cover: "/wolfgeekmarkt.jpeg",
-      background: "bg-indigo-500",
-    },
-    {
-      title: "Virtuo",
-      tech: [
-        TbBrandNextjs,
-        TbBrandTypescript,
-        SiTailwindcss,
-        SiPrisma,
-        SiMongodb,
-        SiOpenai,
-        FaStripeS,
-      ],
-      link: "https://virtuoo-production.up.railway.app",
-      cover: "/virtuo.jpeg",
-      background: "bg-indigo-500",
-    },
-    {
-      title: "Github Users Explorer",
-      tech: [FaReact, FaNodeJs, FaGithub],
-      link: "https://react-github-users-explorer.netlify.app",
-      cover: "/ghusers.jpeg",
-      background: "bg-indigo-500",
-    },
-  ];
+  
+  const projects = PROJECTS;
 
   return (
     <motion.div

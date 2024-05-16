@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { constructMetadata } from "@/lib/utils";
+import StairTransition from "@/components/StairTransition";
 
 const barlow = Barlow({ weight: "500", subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <StairTransition />
           {children}
           <Analytics />
           <SpeedInsights />

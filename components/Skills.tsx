@@ -23,7 +23,7 @@ import { InfiniteMovingCards } from "./ui/infinite-moving-cards";
 import TypeWriter from "./ui/type-writer";
 import { motion } from "framer-motion";
 
-const skillsRight = [
+export const skillsRight = [
   {
     icon: TbBrandNextjs,
     name: "Next",
@@ -57,7 +57,7 @@ const skillsRight = [
     name: "Bash",
   },
 ];
-const skillsLeft = [
+export const skillsLeft = [
   {
     icon: SiExpress,
     name: "Express",

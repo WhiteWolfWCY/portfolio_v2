@@ -33,11 +33,11 @@ export default function Home() {
         <div className="relative  w-full">
           <FloatingNav navItems={navItems} />
         </div>
-        <div className="space-y-20">
+        <div className="space-y-60">
             <div id="me" className="lg:scroll-mt-44">
               <Hero />
             </div>
-            <div id="skills" className="scroll-mt-28 lg:scroll-mt-96">
+            <div id="skills" className="scroll-mt-20 lg:scroll-mt-72">
               <Skills />
             </div>
             <div id="projects" className="scroll-mt-20 lg:scroll-mt-20">
