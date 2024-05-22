@@ -15,16 +15,31 @@ import {
   SiOpenai,
   SiPrisma,
   SiClerk,
+  SiPostgresql,
 } from "react-icons/si";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { DirectionAwareHover } from "./ui/direction-aware-hover";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const strings = ["Projects", "My work", "Take a look!"];
 
 
 export const PROJECTS = [
+  {
+    title: "Shirt.io",
+    tech: [
+      TbBrandNextjs,
+      TbBrandTypescript,
+      SiTailwindcss,
+      FaNodeJs,
+      SiPostgresql,
+      FaStripeS
+    ],
+    link: "https://shirt-io.vercel.app",
+    cover: "/shirtio.jpeg",
+    background: "bg-orange-500",
+  },
   {
     title: "ByteBin",
     tech: [
@@ -100,7 +115,7 @@ export default function Projects() {
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 pt-20 gap-8">
         {projects.map((project, index) => (
-          <Link key={index} href={project.link} className="col-span-1">
+          <Link key={index} href={project.link} className={!projects[index + 1] ? "col-span-2 w-1/2 mx-auto" : "col-span-1"}>
             <div className="p-5 rounded-md">
               <DirectionAwareHover
                 imageUrl={project.cover}
