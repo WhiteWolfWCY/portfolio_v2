@@ -115,7 +115,10 @@ export default function Projects() {
       </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 pt-20 gap-8">
         {projects.map((project, index) => (
-          <Link key={index} href={project.link} className={!projects[index + 1] ? "col-span-2 w-1/2 mx-auto" : "col-span-1"}>
+          <Link key={index} href={project.link} className={cn(
+            "col-span-1",
+            index === projects.length - 1 ? "sm:col-span-2 flex justify-center" : ""
+          )}>
             <div className="p-5 rounded-md">
               <DirectionAwareHover
                 imageUrl={project.cover}
