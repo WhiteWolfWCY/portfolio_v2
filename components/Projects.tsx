@@ -6,6 +6,7 @@ import {
   FaGithub,
   FaPython,
   FaStripeS,
+  FaFire,
 } from "react-icons/fa";
 import { TbBrandNextjs, TbBrandTypescript } from "react-icons/tb";
 import {
@@ -26,6 +27,21 @@ const strings = ["Projects", "My work", "Take a look!"];
 
 
 export const PROJECTS = [
+  {
+    title: "Coinvalley",
+    tech: [
+      TbBrandNextjs,
+      TbBrandTypescript,
+      SiClerk,
+      FaFire,
+      SiTailwindcss,
+      SiPostgresql,
+      FaStripeS,
+    ],
+    link: "https://coinvalley.vercel.app",
+    cover: "/coinvalley.jpeg",
+    background: "bg-green-500",
+  },
   {
     title: "Shirt.io",
     tech: [
@@ -117,7 +133,7 @@ export default function Projects() {
         {projects.map((project, index) => (
           <Link key={index} href={project.link} className={cn(
             "col-span-1",
-            index === projects.length - 1 ? "sm:col-span-2 flex justify-center" : ""
+            index === projects.length - 1 && projects.length % 2 != 0 ? "sm:col-span-2 flex justify-center" : ""
           )}>
             <div className="p-5 rounded-md">
               <DirectionAwareHover
