@@ -130,7 +130,7 @@ export default function Hero() {
           <div className="flex mx-auto gap-10 items-center">
             <Reveal delay={0.8} y={50}>
               <Button className="rounded-full font-semibold hover:bg-foreground hover:-rotate-12 transform transition-all duration-400">
-                <a href="MateuszMartyna.pdf" download="MateuszMartyna.pdf">
+                <a href="Mateusz_Martyna_CV.pdf" download="Mateusz_Martyna_CV.pdf">
                   Resume
                 </a>
               </Button>
