@@ -28,6 +28,21 @@ const strings = ["Projects", "My work", "Take a look!"];
 
 export const PROJECTS = [
   {
+    title: "Quickucate",
+    tech: [
+      TbBrandNextjs,
+      TbBrandTypescript,
+      FaNodeJs,
+      SiTailwindcss,
+      SiPostgresql,
+      SiClerk,
+      FaStripeS,
+    ],
+    link: "https://quickucate.vercel.app",
+    cover: "/quickucate.jpeg",
+    background: "bg-blue-500",
+  },
+  {
     title: "Coinvalley",
     tech: [
       TbBrandNextjs,
