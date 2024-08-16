@@ -54,7 +54,7 @@ export const PROJECTS = [
       FaStripeS,
     ],
     link: "https://coinvalley.vercel.app",
-    cover: "/coinvalley.jpeg",
+    cover: "/coin.jpeg",
     background: "bg-green-500",
   },
   {
