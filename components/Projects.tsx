@@ -96,7 +96,7 @@ export const PROJECTS = [
     ],
     link: "https://wolfgeekmarkt-production.up.railway.app",
     cover: "/wolfgeekmarkt.jpeg",
-    background: "bg-indigo-500",
+    background: "bg-indigo-600",
   },
   {
     title: "Virtuo",
