@@ -43,6 +43,21 @@ export const PROJECTS = [
     background: "bg-blue-500",
   },
   {
+    title: "Win A Day",
+    tech: [
+      TbBrandNextjs,
+      TbBrandTypescript,
+      FaNodeJs,
+      SiTailwindcss,
+      SiPostgresql,
+      SiClerk,
+      SiOpenai,
+    ],
+    link: "https://win-a-day.vercel.app/en",
+    cover: "/winaday.jpeg",
+    background: "bg-orange-500",
+  },
+  {
     title: "Coinvalley",
     tech: [
       TbBrandNextjs,
